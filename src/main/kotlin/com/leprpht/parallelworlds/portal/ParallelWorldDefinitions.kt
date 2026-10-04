@@ -211,6 +211,14 @@ object ParallelWorldDefinitions {
             portalDesign = PortalDesigns.ICE_SPIKES,
         )
 
+    val SNOWY_PLAINS =
+        ParallelWorldDefinition(
+            id = "snowy_plains",
+            biome = biome("snowy_plains"),
+            dimension = dimension("snowy_plains"),
+            portalDesign = PortalDesigns.SNOWY_PLAINS,
+        )
+
     val DESERT =
         ParallelWorldDefinition(
             id = "desert",
@@ -478,6 +486,7 @@ object ParallelWorldDefinitions {
             WINDSWEPT_FOREST,
             WINDSWEPT_SAVANNA,
             ICE_SPIKES,
+            SNOWY_PLAINS,
             DESERT,
             SAVANNA,
             SAVANNA_PLATEAU,
