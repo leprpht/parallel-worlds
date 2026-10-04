@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -e
+
+echo "Running code formatter..."
+./gradlew spotlessApply
+
+if ! git diff --quiet; then
+    echo
+    echo "The formatter changed files."
+    echo "The formatted files have been staged automatically."
+
+    git diff --name-only --diff-filter=ACM | while IFS= read -r file; do
+        git add -- "$file"
+    done
+fi
+
+echo "Running formatting check..."
+./gradlew spotlessCheck
