@@ -17,7 +17,11 @@ repositories {
 }
 
 dependencies {
-    minecraft("com.mojang:minecraft:${project.property("minecraft_version")}")
+    implementation(kotlin("stdlib"))
+
+    minecraft(
+        "com.mojang:minecraft:${project.property("minecraft_version")}"
+    )
 
     implementation(
         "net.fabricmc:fabric-loader:${project.property("loader_version")}"
@@ -73,6 +77,8 @@ tasks.processResources {
 
 tasks.jar {
     from("LICENSE") {
-        rename { "${it}_${project.property("archives_base_name")}" }
+        rename {
+            "${it}_${project.property("archives_base_name")}"
+        }
     }
 }
