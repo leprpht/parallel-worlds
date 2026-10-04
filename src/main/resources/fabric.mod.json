@@ -3,17 +3,22 @@
   "id": "parallelworlds",
   "version": "${version}",
   "name": "Parallel Worlds",
-  "description": "Explore alternate world-generation variants at the same coordinates.",
+  "description": "Explore alternate world-generation variants in the existing world.",
   "authors": [
     "leprpht"
   ],
   "environment": "*",
   "entrypoints": {
-        "main": [{
-            "adapter": "kotlin",
-            "value": "com.leprpht.parallelworlds.ParallelWorlds"
-        }]
-    },
+    "main": [
+      {
+        "adapter": "kotlin",
+        "value": "com.leprpht.parallelworlds.ParallelWorlds"
+      }
+    ]
+  },
+  "mixins": [
+    "parallelworlds.mixins.json"
+  ],
   "depends": {
     "fabricloader": ">=${loader_version}",
     "minecraft": "~${minecraft_version}",

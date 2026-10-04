@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "com.leprpht.parallelworlds.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": [
+    "NetherPortalBlockMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
