@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Nothing yet.
 
+## [1.0.1] - 2026-10-05
+
+### Changed
+
+- Changed Mushroom biome and Flowery Forest biome portal layout
+
 ## [1.0.0] - 2026-10-05
 
 ### Added
