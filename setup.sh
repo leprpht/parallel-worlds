@@ -109,6 +109,14 @@ if [ -f ".githooks/pre-commit" ]; then
     chmod +x .githooks/pre-commit
 fi
 
+if [ -f ".githooks/pre-push" ]; then
+    chmod +x .githooks/pre-push
+fi
+
+if [ -d "scripts" ]; then
+    chmod +x scripts/*.sh
+fi
+
 echo "Git hooks path: $(git config core.hooksPath)"
 
 # Development dependencies
@@ -118,10 +126,40 @@ echo "Downloading and configuring development dependencies..."
 
 ./gradlew spotlessApply
 
-# This also forces Loom/Fabric/Minecraft development dependencies to resolve.
 ./gradlew classes
 
-# Final validation
+# Python
+
+if ! command -v python3 >/dev/null 2>&1; then
+    echo
+    echo "Python 3 is required."
+
+    if command -v brew >/dev/null 2>&1; then
+        echo "Installing Python with Homebrew..."
+        brew install python
+    else
+        echo "Error: Python 3 is required and Homebrew is not installed."
+        echo "Install Homebrew or Python 3, then run setup.sh again."
+        exit 1
+    fi
+fi
+
+echo "Python: $(python3 --version)"
+
+if [ ! -d ".venv" ]; then
+    echo
+    echo "Creating Python virtual environment..."
+    python3 -m venv .venv
+fi
+
+echo
+echo "Installing Python development tools..."
+
+.venv/bin/python -m pip install --upgrade pip
+.venv/bin/python -m pip install black
+
+echo "Black:"
+.venv/bin/python -m black --version
 
 echo
 echo "Running formatter check..."
@@ -137,3 +175,5 @@ echo "Git:           OK"
 echo "Git hooks:     OK"
 echo "Formatters:    OK"
 echo "Fabric/Loom:   OK"
+echo "Python:        OK"
+echo "Black:         OK"

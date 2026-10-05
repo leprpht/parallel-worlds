@@ -2,7 +2,18 @@
 
 set -e
 
-echo "Running code formatter..."
+if [ -x ".venv/bin/black" ]; then
+    BLACK=".venv/bin/black"
+else
+    echo "Error: Python virtual environment is not configured."
+    echo "Run setup.sh first."
+    exit 1
+fi
+
+echo "Running Python formatter..."
+"$BLACK" scripts
+
+echo "Running Kotlin formatter..."
 ./gradlew spotlessApply
 
 if ! git diff --quiet; then
@@ -15,5 +26,8 @@ if ! git diff --quiet; then
     done
 fi
 
-echo "Running formatting check..."
+echo "Running Python formatting check..."
+"$BLACK" --check scripts
+
+echo "Running Kotlin formatting check..."
 ./gradlew spotlessCheck

@@ -1,0 +1,47 @@
+name: Generate portal documentation
+
+on:
+  push:
+    paths:
+      - "src/main/kotlin/**/PortalDesigns.kt"
+      - "scripts/generate_portal_docs.py"
+      - "scripts/portal_images.json"
+      - "scripts/portal_docs/**"
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Generate portal documentation
+        run: python3 scripts/generate_portal_docs.py
+
+      - name: Check for generated changes
+        id: changes
+        run: |
+          if git diff --quiet -- docs/portals/index.html docs/portals/portals.css; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit generated documentation
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add docs/portals/index.html docs/portals/portals.css
+          git commit -m "docs: regenerate portal documentation"
+          git push

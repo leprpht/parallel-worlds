@@ -40,3 +40,6 @@ replay_pid*
 # Temporary files
 *.tmp
 *.temp
+
+# Cache
+scripts/.cache/

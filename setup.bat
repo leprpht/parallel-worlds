@@ -126,6 +126,10 @@ git config core.hooksPath .githooks
 
 if errorlevel 1 exit /b 1
 
+if exist ".githooks\pre-push" (
+    echo Pre-push hook found.
+)
+
 echo Git hooks path:
 git config core.hooksPath
 
@@ -151,6 +155,62 @@ call gradlew.bat spotlessCheck
 
 if errorlevel 1 exit /b 1
 
+REM Python
+
+where py >nul 2>&1
+
+if errorlevel 1 (
+    echo.
+    echo Python is required.
+
+    where winget >nul 2>&1
+
+    if errorlevel 1 (
+        echo Error: Python is required and winget is not available.
+        echo Install Python 3.13 and run setup.bat again.
+        exit /b 1
+    )
+
+    echo Installing Python 3.13 with winget...
+
+    winget install --id Python.Python.3.13 -e --source winget
+
+    if errorlevel 1 (
+        echo Error: Failed to install Python.
+        exit /b 1
+    )
+
+    echo.
+    echo Python was installed.
+    echo Please restart this terminal and run setup.bat again.
+    exit /b 0
+)
+
+echo Python:
+py --version
+
+if not exist ".venv\" (
+    echo.
+    echo Creating Python virtual environment...
+    py -3 -m venv .venv
+
+    if errorlevel 1 exit /b 1
+)
+
+echo.
+echo Installing Python development tools...
+
+".venv\Scripts\python.exe" -m pip install --upgrade pip
+
+if errorlevel 1 exit /b 1
+
+".venv\Scripts\python.exe" -m pip install black
+
+if errorlevel 1 exit /b 1
+
+echo Black:
+".venv\Scripts\python.exe" -m black --version
+
 echo.
 echo === Development environment ready ===
 echo.
@@ -160,5 +220,7 @@ echo Git:           OK
 echo Git hooks:     OK
 echo Formatters:    OK
 echo Fabric/Loom:   OK
+echo Python:        OK
+echo Black:         OK
 
 endlocal
