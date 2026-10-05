@@ -126,6 +126,10 @@ git config core.hooksPath .githooks
 
 if errorlevel 1 exit /b 1
 
+if exist ".githooks\pre-push" (
+    echo Pre-push hook found.
+)
+
 echo Git hooks path:
 git config core.hooksPath
 

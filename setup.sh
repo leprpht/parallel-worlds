@@ -109,6 +109,14 @@ if [ -f ".githooks/pre-commit" ]; then
     chmod +x .githooks/pre-commit
 fi
 
+if [ -f ".githooks/pre-push" ]; then
+    chmod +x .githooks/pre-push
+fi
+
+if [ -d "scripts" ]; then
+    chmod +x scripts/*.sh
+fi
+
 echo "Git hooks path: $(git config core.hooksPath)"
 
 # Development dependencies
