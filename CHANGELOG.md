@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Nothing yet.
 
+## [1.1.0] - 2026-10-05
+
+### Fixed
+
+- Custom-dimension portals can now be recreated and used to return to the Overworld when the original return portal was destroyed.
+
 ## [1.0.1] - 2026-10-05
 
 ### Changed

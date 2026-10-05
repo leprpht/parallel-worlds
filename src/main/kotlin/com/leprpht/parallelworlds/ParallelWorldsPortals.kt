@@ -195,11 +195,14 @@ object ParallelWorldsPortals {
         world: ServerLevel,
         design: PortalDesign,
     ): ParallelWorldDefinition? {
-        if (world.dimension() != OVERWORLD_DIMENSION) {
-            return null
+        if (world.dimension() == OVERWORLD_DIMENSION) {
+            return ParallelWorldDefinitions.byDesign(design)
         }
 
-        return ParallelWorldDefinitions.byDesign(design)
+        val currentDefinition =
+            ParallelWorldDefinitions.byDimension(world.dimension().identifier()) ?: return null
+
+        return currentDefinition.takeIf { it.portalDesign == design }
     }
 
     private fun getDestinationWorld(
