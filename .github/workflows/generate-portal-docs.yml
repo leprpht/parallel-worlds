@@ -2,12 +2,7 @@ name: Generate portal documentation
 
 on:
   push:
-    paths:
-      - "src/main/kotlin/**/PortalDesigns.kt"
-      - "scripts/generate_portal_docs.py"
-      - "scripts/portal_images.json"
-      - "scripts/portal_docs/**"
-  workflow_dispatch:
+  pull_request:
 
 permissions:
   contents: write
