@@ -1,21 +1,27 @@
 package com.leprpht.parallelworlds
 
+import com.leprpht.parallelworlds.portal.ParallelWorldDefinition
 import com.leprpht.parallelworlds.portal.ParallelWorldDefinitions
 import com.leprpht.parallelworlds.portal.PortalDesign
 import net.fabricmc.fabric.api.event.player.UseBlockCallback
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
+import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceKey
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
+import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.Items
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.NetherPortalBlock
+import org.slf4j.LoggerFactory
 
 object ParallelWorldsPortals {
+
+    private val logger = LoggerFactory.getLogger("parallelworlds")
 
     private val OVERWORLD_DIMENSION: ResourceKey<Level> = Level.OVERWORLD
 
@@ -35,31 +41,31 @@ object ParallelWorldsPortals {
 
             val serverWorld = world as? ServerLevel ?: return@register InteractionResult.PASS
 
-            val clickedPos = hitResult.blockPos
-
             val frame =
                 findFrameNear(
                     serverWorld,
-                    clickedPos,
+                    hitResult.blockPos,
                 ) ?: return@register InteractionResult.PASS
 
-            if (serverWorld.dimension() != OVERWORLD_DIMENSION) {
-                return@register InteractionResult.PASS
-            }
-
-            if (ParallelWorldDefinitions.byDesign(frame.design) == null) {
-                return@register InteractionResult.PASS
-            }
+            val definition =
+                destinationDefinition(
+                    serverWorld,
+                    frame.design,
+                ) ?: return@register InteractionResult.PASS
 
             if (!activatePortal(serverWorld, frame)) {
                 return@register InteractionResult.PASS
             }
 
-            player.mainHandItem.hurtAndBreak(
-                1,
-                player,
-                hand,
+            logger.info(
+                "Activated {} portal at {} in {} -> {}",
+                definition.id,
+                frame.bottomLeft,
+                serverWorld.dimension().identifier(),
+                definition.dimension,
             )
+
+            damageFlintAndSteel(player)
 
             InteractionResult.SUCCESS
         }
@@ -69,28 +75,87 @@ object ParallelWorldsPortals {
         world: ServerLevel,
         portalPos: BlockPos,
     ): PortalDestination? {
+        logger.info(
+            "Custom portal lookup: dimension={}, position={}",
+            world.dimension().identifier(),
+            portalPos,
+        )
+
         val portalState = world.getBlockState(portalPos)
 
         if (!portalState.`is`(Blocks.NETHER_PORTAL)) {
+            logger.warn(
+                "Custom portal lookup failed: block at {} is {}",
+                portalPos,
+                portalState.block,
+            )
             return null
         }
 
         val portalAxis = portalState.getValue(NetherPortalBlock.AXIS)
+
+        logger.info(
+            "Portal block found at {} with AXIS={}",
+            portalPos,
+            portalAxis,
+        )
 
         val sourceFrame =
             findFrameNearPortal(
                 world,
                 portalPos,
                 portalAxis,
-            ) ?: return null
+            )
+
+        if (sourceFrame == null) {
+            logger.warn(
+                "Custom portal lookup failed: could not find frame around portal at {}",
+                portalPos,
+            )
+            return null
+        }
+
+        logger.info(
+            "Portal frame found: bottomLeft={}, direction={}, axis={}, design={}",
+            sourceFrame.bottomLeft,
+            sourceFrame.widthDirection,
+            sourceFrame.widthAxis,
+            ParallelWorldDefinitions.byDesign(sourceFrame.design)?.id ?: "UNKNOWN",
+        )
 
         val sourceDesign = sourceFrame.design
+
+        val definition = ParallelWorldDefinitions.byDesign(sourceDesign)
+
+        if (definition == null) {
+            logger.warn("Custom portal lookup failed: frame design is not registered")
+            return null
+        }
+
+        logger.info(
+            "Portal definition found: id={}, dimension={}",
+            definition.id,
+            definition.dimension,
+        )
 
         val destinationWorld =
             getDestinationWorld(
                 world,
                 sourceDesign,
-            ) ?: return null
+            )
+
+        if (destinationWorld == null) {
+            logger.warn(
+                "Custom portal lookup failed: destination dimension {} is not loaded",
+                definition.dimension,
+            )
+            return null
+        }
+
+        logger.info(
+            "Destination world found: {}",
+            destinationWorld.dimension().identifier(),
+        )
 
         val existingPortal =
             findExistingPortal(
@@ -108,12 +173,33 @@ object ParallelWorldsPortals {
                     sourceFrame,
                     sourceDesign,
                 )
-                ?: return null
+
+        if (destinationFrame == null) {
+            logger.warn("Custom portal lookup failed: could not find/create destination frame")
+            return null
+        }
+
+        logger.info(
+            "Destination portal frame: bottomLeft={}, direction={}",
+            destinationFrame.bottomLeft,
+            destinationFrame.widthDirection,
+        )
 
         return PortalDestination(
             world = destinationWorld,
             position = portalCenter(destinationFrame),
         )
+    }
+
+    private fun destinationDefinition(
+        world: ServerLevel,
+        design: PortalDesign,
+    ): ParallelWorldDefinition? {
+        if (world.dimension() != OVERWORLD_DIMENSION) {
+            return null
+        }
+
+        return ParallelWorldDefinitions.byDesign(design)
     }
 
     private fun getDestinationWorld(
@@ -125,9 +211,14 @@ object ParallelWorldsPortals {
 
             val dimensionKey =
                 ResourceKey.create(
-                    net.minecraft.core.registries.Registries.DIMENSION,
+                    Registries.DIMENSION,
                     definition.dimension,
                 )
+
+            logger.info(
+                "Looking for destination dimension {}",
+                dimensionKey.identifier(),
+            )
 
             return world.server.getLevel(dimensionKey)
         }
@@ -145,18 +236,16 @@ object ParallelWorldsPortals {
         world: ServerLevel,
         frame: PortalFrame,
     ): Boolean {
-        val widthDirection = widthDirection(frame.widthAxis) ?: return false
-
         val portalState =
             Blocks.NETHER_PORTAL.defaultBlockState()
                 .setValue(
                     NetherPortalBlock.AXIS,
-                    frame.portalAxis,
+                    frame.widthAxis,
                 )
 
         for (width in 1..2) {
             for (height in 1..3) {
-                val pos = frame.bottomLeft.relative(widthDirection, width).above(height)
+                val pos = frame.bottomLeft.relative(frame.widthDirection, width).above(height)
 
                 world.setBlock(
                     pos,
@@ -169,11 +258,27 @@ object ParallelWorldsPortals {
         return true
     }
 
+    private fun damageFlintAndSteel(player: Player) {
+        player.mainHandItem.hurtAndBreak(
+            1,
+            player,
+            InteractionHand.MAIN_HAND,
+        )
+    }
+
     private fun findFrameNear(
         world: ServerLevel,
         clickedPos: BlockPos,
     ): PortalFrame? {
         val designs = ParallelWorldDefinitions.all().map { it.portalDesign }.distinct()
+
+        val directions =
+            listOf(
+                Direction.EAST,
+                Direction.WEST,
+                Direction.SOUTH,
+                Direction.NORTH,
+            )
 
         for (xOffset in -4..4) {
             for (yOffset in -4..4) {
@@ -185,28 +290,18 @@ object ParallelWorldsPortals {
                             zOffset,
                         )
 
-                    val xFrame =
-                        findFrameAt(
-                            world,
-                            candidate,
-                            Direction.Axis.X,
-                            designs,
-                        )
+                    for (direction in directions) {
+                        val frame =
+                            findFrameAt(
+                                world,
+                                candidate,
+                                direction,
+                                designs,
+                            )
 
-                    if (xFrame != null) {
-                        return xFrame
-                    }
-
-                    val zFrame =
-                        findFrameAt(
-                            world,
-                            candidate,
-                            Direction.Axis.Z,
-                            designs,
-                        )
-
-                    if (zFrame != null) {
-                        return zFrame
+                        if (frame != null) {
+                            return frame
+                        }
                     }
                 }
             }
@@ -218,10 +313,12 @@ object ParallelWorldsPortals {
     private fun findFrameAt(
         world: ServerLevel,
         bottomLeft: BlockPos,
-        widthAxis: Direction.Axis,
+        widthDirection: Direction,
         designs: List<PortalDesign>,
     ): PortalFrame? {
-        val widthDirection = widthDirection(widthAxis) ?: return null
+        if (widthDirection.axis == Direction.Axis.Y) {
+            return null
+        }
 
         for (design in designs) {
             if (
@@ -235,13 +332,6 @@ object ParallelWorldsPortals {
                 continue
             }
 
-            val portalAxis =
-                when (widthAxis) {
-                    Direction.Axis.X -> Direction.Axis.Z
-                    Direction.Axis.Z -> Direction.Axis.X
-                    else -> continue
-                }
-
             if (
                 !hasValidPortalInterior(
                     world,
@@ -254,8 +344,8 @@ object ParallelWorldsPortals {
 
             return PortalFrame(
                 bottomLeft = bottomLeft,
-                widthAxis = widthAxis,
-                portalAxis = portalAxis,
+                widthDirection = widthDirection,
+                widthAxis = widthDirection.axis,
                 design = design,
             )
         }
@@ -271,90 +361,20 @@ object ParallelWorldsPortals {
     ): Boolean {
         val positions =
             listOf(
-                BlockPosition(
-                    bottomLeft,
-                    0,
-                    0,
-                    design.bottomLeft,
-                ),
-                BlockPosition(
-                    bottomLeft,
-                    1,
-                    0,
-                    design.bottomInnerLeft,
-                ),
-                BlockPosition(
-                    bottomLeft,
-                    2,
-                    0,
-                    design.bottomInnerRight,
-                ),
-                BlockPosition(
-                    bottomLeft,
-                    3,
-                    0,
-                    design.bottomRight,
-                ),
-                BlockPosition(
-                    bottomLeft,
-                    0,
-                    1,
-                    design.lowerLeft,
-                ),
-                BlockPosition(
-                    bottomLeft,
-                    3,
-                    1,
-                    design.lowerRight,
-                ),
-                BlockPosition(
-                    bottomLeft,
-                    0,
-                    2,
-                    design.middleLeft,
-                ),
-                BlockPosition(
-                    bottomLeft,
-                    3,
-                    2,
-                    design.middleRight,
-                ),
-                BlockPosition(
-                    bottomLeft,
-                    0,
-                    3,
-                    design.upperLeft,
-                ),
-                BlockPosition(
-                    bottomLeft,
-                    3,
-                    3,
-                    design.upperRight,
-                ),
-                BlockPosition(
-                    bottomLeft,
-                    0,
-                    4,
-                    design.topLeft,
-                ),
-                BlockPosition(
-                    bottomLeft,
-                    1,
-                    4,
-                    design.topInnerLeft,
-                ),
-                BlockPosition(
-                    bottomLeft,
-                    2,
-                    4,
-                    design.topInnerRight,
-                ),
-                BlockPosition(
-                    bottomLeft,
-                    3,
-                    4,
-                    design.topRight,
-                ),
+                BlockPosition(bottomLeft, 0, 0, design.bottomLeft),
+                BlockPosition(bottomLeft, 1, 0, design.bottomInnerLeft),
+                BlockPosition(bottomLeft, 2, 0, design.bottomInnerRight),
+                BlockPosition(bottomLeft, 3, 0, design.bottomRight),
+                BlockPosition(bottomLeft, 0, 1, design.lowerLeft),
+                BlockPosition(bottomLeft, 3, 1, design.lowerRight),
+                BlockPosition(bottomLeft, 0, 2, design.middleLeft),
+                BlockPosition(bottomLeft, 3, 2, design.middleRight),
+                BlockPosition(bottomLeft, 0, 3, design.upperLeft),
+                BlockPosition(bottomLeft, 3, 3, design.upperRight),
+                BlockPosition(bottomLeft, 0, 4, design.topLeft),
+                BlockPosition(bottomLeft, 1, 4, design.topInnerLeft),
+                BlockPosition(bottomLeft, 2, 4, design.topInnerRight),
+                BlockPosition(bottomLeft, 3, 4, design.topRight),
             )
 
         return positions.all { expected ->
@@ -395,44 +415,101 @@ object ParallelWorldsPortals {
         portalPos: BlockPos,
         portalAxis: Direction.Axis,
     ): PortalFrame? {
-        var bottomPortal = portalPos
-
-        while (world.getBlockState(bottomPortal.below()).`is`(Blocks.NETHER_PORTAL)) {
-            bottomPortal = bottomPortal.below()
-        }
-
-        val widthAxis =
+        val directions =
             when (portalAxis) {
-                Direction.Axis.X -> Direction.Axis.Z
-                Direction.Axis.Z -> Direction.Axis.X
-                else -> return null
+                Direction.Axis.X ->
+                    listOf(
+                        Direction.EAST,
+                        Direction.WEST,
+                    )
+
+                Direction.Axis.Z ->
+                    listOf(
+                        Direction.SOUTH,
+                        Direction.NORTH,
+                    )
+
+                Direction.Axis.Y -> return null
             }
-
-        val widthDirection = widthDirection(widthAxis) ?: return null
-
-        val possibleBottomLefts =
-            listOf(
-                bottomPortal.relative(widthDirection.opposite),
-                bottomPortal,
-            )
 
         val designs = ParallelWorldDefinitions.all().map { it.portalDesign }.distinct()
 
-        for (candidate in possibleBottomLefts) {
-            val frame =
-                findFrameAt(
-                    world,
-                    candidate,
-                    widthAxis,
-                    designs,
-                )
+        /*
+         * Do not assume a fixed relationship between the portal block
+         * and the frame's bottom-left block. Search the nearby area
+         * for the complete frame instead.
+         *
+         * The search is deliberately small because a Nether portal
+         * interior is only 2x3 blocks.
+         */
+        for (xOffset in -4..4) {
+            for (yOffset in -5..1) {
+                for (zOffset in -4..4) {
+                    val candidate =
+                        portalPos.offset(
+                            xOffset,
+                            yOffset,
+                            zOffset,
+                        )
 
-            if (frame != null) {
-                return frame
+                    for (direction in directions) {
+                        val frame =
+                            findFrameAt(
+                                world,
+                                candidate,
+                                direction,
+                                designs,
+                            )
+
+                        if (frame != null) {
+                            /*
+                             * The portal must actually be inside this
+                             * frame. This prevents a nearby unrelated
+                             * frame from being selected.
+                             */
+                            if (
+                                isPortalInsideFrame(
+                                    world,
+                                    portalPos,
+                                    frame,
+                                )
+                            ) {
+                                return frame
+                            }
+                        }
+                    }
+                }
             }
         }
 
         return null
+    }
+
+    private fun isPortalInsideFrame(
+        world: ServerLevel,
+        portalPos: BlockPos,
+        frame: PortalFrame,
+    ): Boolean {
+        val portalAxis = world.getBlockState(portalPos).getValue(NetherPortalBlock.AXIS)
+
+        if (portalAxis != frame.widthAxis) {
+            return false
+        }
+
+        for (width in 1..2) {
+            for (height in 1..3) {
+                val expectedPos =
+                    frame.bottomLeft.relative(frame.widthDirection, width).above(height)
+
+                if (world.getBlockState(expectedPos).`is`(Blocks.NETHER_PORTAL)) {
+                    if (expectedPos == portalPos) {
+                        return true
+                    }
+                }
+            }
+        }
+
+        return false
     }
 
     private fun findExistingPortal(
@@ -458,7 +535,6 @@ object ParallelWorldsPortals {
 
                 for (y in world.minY..world.maxY - 5) {
                     val pos = BlockPos(x, y, z)
-
                     val state = world.getBlockState(pos)
 
                     if (!state.`is`(Blocks.NETHER_PORTAL)) {
@@ -467,7 +543,7 @@ object ParallelWorldsPortals {
 
                     val portalAxis = state.getValue(NetherPortalBlock.AXIS)
 
-                    if (portalAxis == Direction.Axis.Y) {
+                    if (portalAxis != widthAxis) {
                         continue
                     }
 
@@ -482,17 +558,9 @@ object ParallelWorldsPortals {
                         continue
                     }
 
-                    val axisPenalty =
-                        if (frame.widthAxis == widthAxis) {
-                            0
-                        } else {
-                            1000
-                        }
-
                     val distance =
                         kotlin.math.abs(frame.bottomLeft.x - sourceX) +
-                            kotlin.math.abs(frame.bottomLeft.z - sourceZ) +
-                            axisPenalty
+                            kotlin.math.abs(frame.bottomLeft.z - sourceZ)
 
                     if (distance < bestDistance) {
                         bestDistance = distance
@@ -510,7 +578,7 @@ object ParallelWorldsPortals {
         sourceFrame: PortalFrame,
         design: PortalDesign,
     ): PortalFrame? {
-        val widthDirection = widthDirection(sourceFrame.widthAxis) ?: return null
+        val widthDirection = sourceFrame.widthDirection
 
         for (radius in 0..16) {
             for (xOffset in -radius..radius) {
@@ -558,8 +626,8 @@ object ParallelWorldsPortals {
                     val frame =
                         PortalFrame(
                             bottomLeft = bottomLeft,
-                            widthAxis = sourceFrame.widthAxis,
-                            portalAxis = sourceFrame.portalAxis,
+                            widthDirection = widthDirection,
+                            widthAxis = widthDirection.axis,
                             design = design,
                         )
 
@@ -610,9 +678,10 @@ object ParallelWorldsPortals {
             for (height in 0..4) {
                 val pos = bottomLeft.relative(widthDirection, width).above(height)
 
-                val state = world.getBlockState(pos)
-
-                if (!state.isAir && !state.`is`(Blocks.NETHER_PORTAL)) {
+                if (
+                    !world.getBlockState(pos).isAir &&
+                        !world.getBlockState(pos).`is`(Blocks.NETHER_PORTAL)
+                ) {
                     return false
                 }
             }
@@ -626,13 +695,9 @@ object ParallelWorldsPortals {
         frame: PortalFrame,
         design: PortalDesign,
     ) {
-        val widthDirection = widthDirection(frame.widthAxis) ?: return
+        val widthDirection = frame.widthDirection
 
-        setBlock(
-            world,
-            frame.bottomLeft,
-            design.bottomLeft,
-        )
+        setBlock(world, frame.bottomLeft, design.bottomLeft)
 
         setBlock(
             world,
@@ -712,10 +777,7 @@ object ParallelWorldsPortals {
             design.topRight,
         )
 
-        fillPortal(
-            world,
-            frame,
-        )
+        fillPortal(world, frame)
     }
 
     private fun fillPortal(
@@ -726,14 +788,12 @@ object ParallelWorldsPortals {
             Blocks.NETHER_PORTAL.defaultBlockState()
                 .setValue(
                     NetherPortalBlock.AXIS,
-                    frame.portalAxis,
+                    frame.widthAxis,
                 )
-
-        val widthDirection = widthDirection(frame.widthAxis) ?: return
 
         for (width in 1..2) {
             for (height in 1..3) {
-                val pos = frame.bottomLeft.relative(widthDirection, width).above(height)
+                val pos = frame.bottomLeft.relative(frame.widthDirection, width).above(height)
 
                 world.setBlock(
                     pos,
@@ -745,17 +805,7 @@ object ParallelWorldsPortals {
     }
 
     private fun portalCenter(frame: PortalFrame): BlockPos {
-        val widthDirection = widthDirection(frame.widthAxis) ?: Direction.EAST
-
-        return frame.bottomLeft.relative(widthDirection).above(2)
-    }
-
-    private fun widthDirection(axis: Direction.Axis): Direction? {
-        return when (axis) {
-            Direction.Axis.X -> Direction.EAST
-            Direction.Axis.Z -> Direction.SOUTH
-            else -> null
-        }
+        return frame.bottomLeft.relative(frame.widthDirection).above(2)
     }
 
     private fun setBlock(
@@ -777,8 +827,8 @@ object ParallelWorldsPortals {
 
     private data class PortalFrame(
         val bottomLeft: BlockPos,
+        val widthDirection: Direction,
         val widthAxis: Direction.Axis,
-        val portalAxis: Direction.Axis,
         val design: PortalDesign,
     )
 
