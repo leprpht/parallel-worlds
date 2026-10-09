@@ -18,7 +18,7 @@ SOURCE_FILE = (
 
 IMAGE_CONFIG_FILE = SCRIPTS_DIR / "portal_images.json"
 
-OUTPUT_DIR = PROJECT_ROOT / "docs" / "portals"
+OUTPUT_DIR = PROJECT_ROOT / "docs"
 OUTPUT_FILE = OUTPUT_DIR / "index.html"
 OUTPUT_CSS_FILE = OUTPUT_DIR / "portals.css"
 
