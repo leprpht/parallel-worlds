@@ -34,6 +34,8 @@ dependencies {
     implementation(
         "net.fabricmc:fabric-language-kotlin:${project.property("fabric_language_kotlin_version")}"
     )
+
+    testImplementation(kotlin("test"))
 }
 
 java {
@@ -81,4 +83,8 @@ tasks.jar {
             "${it}_${project.property("archives_base_name")}"
         }
     }
+}
+
+tasks.test {
+    useJUnitPlatform()
 }
