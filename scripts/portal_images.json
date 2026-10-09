@@ -1,649 +1,649 @@
 {
   "images": {
     "poppy": {
-      "image_url": "images/minecraft/Poppy.webp",
+      "image_url": "portals/images/minecraft/Poppy.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=Poppy.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "oak_log": {
-      "image_url": "images/minecraft/OakLog.webp",
+      "image_url": "portals/images/minecraft/OakLog.webp",
       "source_url": "https://minecraft.fandom.com/wiki/Log?file=Oak_Log_%28UD%29_JE5_BE3.png#Gallery",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "grass_block": {
-      "image_url": "images/minecraft/GrassBlock.webp",
+      "image_url": "portals/images/minecraft/GrassBlock.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=GrassNew.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "dirt": {
-      "image_url": "images/minecraft/Dirt.webp",
+      "image_url": "portals/images/minecraft/Dirt.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=Dirt.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "stone": {
-      "image_url": "images/minecraft/Stone.webp",
+      "image_url": "portals/images/minecraft/Stone.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=Stone.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "smooth_stone": {
-      "image_url": "images/minecraft/SmoothStone.webp",
+      "image_url": "portals/images/minecraft/SmoothStone.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=SmoothStone.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "sunflower": {
-      "image_url": "images/minecraft/Sunflower.webp",
+      "image_url": "portals/images/minecraft/Sunflower.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=Sunflower.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "oak_leaves": {
-      "image_url": "images/minecraft/OakLeaves.webp",
+      "image_url": "portals/images/minecraft/OakLeaves.webp",
       "source_url": "https://minecraft.fandom.com/wiki/Leaves?file=Oak_Leaves.png#Renders",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "stripped_birch_log": {
-      "image_url": "images/minecraft/StrippedBirchLog.webp",
+      "image_url": "portals/images/minecraft/StrippedBirchLog.webp",
       "source_url": "https://minecraft.fandom.com/wiki/Log?file=Stripped_Birch_Log_%28UD%29_JE2_BE2.png#Gallery",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "birch_planks": {
-      "image_url": "images/minecraft/BirchPlanks.webp",
+      "image_url": "portals/images/minecraft/BirchPlanks.webp",
       "source_url": "https://minecraft.fandom.com/wiki/Planks?file=Birch_Planks.png#Gallery",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "stripped_oak_log": {
-      "image_url": "images/minecraft/StrippedOakLog.webp",
+      "image_url": "portals/images/minecraft/StrippedOakLog.webp",
       "source_url": "https://minecraft.fandom.com/wiki/Log?file=Stripped_Oak_Log_%28UD%29_JE2_BE2.png#Gallery",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "moss_block": {
-      "image_url": "images/minecraft/MossBlock.webp",
+      "image_url": "portals/images/minecraft/MossBlock.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=Moss_Block.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "flowering_azalea_leaves": {
-      "image_url": "images/minecraft/FloweringAzaleaLeaves.webp",
+      "image_url": "portals/images/minecraft/FloweringAzaleaLeaves.webp",
       "source_url": "https://minecraft.fandom.com/wiki/Leaves?file=Flowering_Azalea_Leaves.png#Renders",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "birch_leaves": {
-      "image_url": "images/minecraft/BirchLeaves.webp",
+      "image_url": "portals/images/minecraft/BirchLeaves.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=BirchLeaves.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "birch_log": {
-      "image_url": "images/minecraft/BirchLog.webp",
+      "image_url": "portals/images/minecraft/BirchLog.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=BirchLog.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "white_terracotta": {
-      "image_url": "images/minecraft/WhiteTerracotta.webp",
+      "image_url": "portals/images/minecraft/WhiteTerracotta.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=WhiteTerracotta.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "mossy_cobblestone": {
-      "image_url": "images/minecraft/MossyCobblestone.webp",
+      "image_url": "portals/images/minecraft/MossyCobblestone.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=MossyCobblestone.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "dark_oak_leaves": {
-      "image_url": "images/minecraft/DarkOakLeaves.webp",
+      "image_url": "portals/images/minecraft/DarkOakLeaves.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=DarkOakLeaves.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "stripped_dark_oak_log": {
-      "image_url": "images/minecraft/StrippedDarkOakLog.webp",
+      "image_url": "portals/images/minecraft/StrippedDarkOakLog.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=StrippedDarkOakLog.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "dark_oak_planks": {
-      "image_url": "images/minecraft/DarkOakPlanks.webp",
+      "image_url": "portals/images/minecraft/DarkOakPlanks.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=DarkOakPlanks.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "dark_oak_log": {
-      "image_url": "images/minecraft/DarkOakLog.webp",
+      "image_url": "portals/images/minecraft/DarkOakLog.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=DarkOakLog.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "brown_terracotta": {
-      "image_url": "images/minecraft/BrownTerracotta.webp",
+      "image_url": "portals/images/minecraft/BrownTerracotta.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=BrownTerracotta.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "orange_poplar_leaves": {
-      "image_url": "images/minecraft/OrangePoplarLeaves.webp",
+      "image_url": "portals/images/minecraft/OrangePoplarLeaves.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=OrangePoplarLeaves.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "red_poplar_leaves": {
-      "image_url": "images/minecraft/RedPoplarLeaves.webp",
+      "image_url": "portals/images/minecraft/RedPoplarLeaves.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=RedPoplarLeaves.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "yellow_poplar_leaves": {
-      "image_url": "images/minecraft/YellowPoplarLeaves.webp",
+      "image_url": "portals/images/minecraft/YellowPoplarLeaves.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=YellowPoplarLeaves.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "stripped_poplar_log": {
-      "image_url": "images/minecraft/StrippedPoplarLog.webp",
+      "image_url": "portals/images/minecraft/StrippedPoplarLog.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=StrippedPoplarLog.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "poplar_planks": {
-      "image_url": "images/minecraft/PoplarPlanks.webp",
+      "image_url": "portals/images/minecraft/PoplarPlanks.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=PoplarPlanks.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "poplar_log": {
-      "image_url": "images/minecraft/PoplarLog.webp",
+      "image_url": "portals/images/minecraft/PoplarLog.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=PoplarLog.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "stripped_pale_oak_log": {
-      "image_url": "images/minecraft/StrippedPaleOakLog.webp",
+      "image_url": "portals/images/minecraft/StrippedPaleOakLog.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=StrippedPaleOakLog.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "pale_oak_leaves": {
-      "image_url": "images/minecraft/PaleOakLeaves.webp",
+      "image_url": "portals/images/minecraft/PaleOakLeaves.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=PaleOakLeaves.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "pale_oak_planks": {
-      "image_url": "images/minecraft/PaleOakPlanks.webp",
+      "image_url": "portals/images/minecraft/PaleOakPlanks.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=PaleOakPlanks.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "pale_oak_log": {
-      "image_url": "images/minecraft/PaleOakLog.webp",
+      "image_url": "portals/images/minecraft/PaleOakLog.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=PaleOakLog.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "resin_block": {
-      "image_url": "images/minecraft/ResinBlock.webp",
+      "image_url": "portals/images/minecraft/ResinBlock.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=ResinBlock.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "pink_terracotta": {
-      "image_url": "images/minecraft/PinkTerracotta.webp",
+      "image_url": "portals/images/minecraft/PinkTerracotta.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=PinkTerracotta.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "cherry_leaves": {
-      "image_url": "images/minecraft/CherryLeaves.webp",
+      "image_url": "portals/images/minecraft/CherryLeaves.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=CherryLeaves.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "cherry_log": {
-      "image_url": "images/minecraft/CherryLog.webp",
+      "image_url": "portals/images/minecraft/CherryLog.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=CherryLog.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "stripped_cherry_log": {
-      "image_url": "images/minecraft/StrippedCherryLog.webp",
+      "image_url": "portals/images/minecraft/StrippedCherryLog.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=StrippedCherryLog.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "cherry_planks": {
-      "image_url": "images/minecraft/CherryPlanks.webp",
+      "image_url": "portals/images/minecraft/CherryPlanks.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=CherryPlanks.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "stripped_spruce_log": {
-      "image_url": "images/minecraft/StrippedSpruceLog.webp",
+      "image_url": "portals/images/minecraft/StrippedSpruceLog.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=StrippedSpruceLog.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "spruce_planks": {
-      "image_url": "images/minecraft/SprucePlanks.webp",
+      "image_url": "portals/images/minecraft/SprucePlanks.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=SprucePlanks.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "spruce_log": {
-      "image_url": "images/minecraft/SpruceLog.webp",
+      "image_url": "portals/images/minecraft/SpruceLog.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=SpruceLog.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "tuff": {
-      "image_url": "images/minecraft/Tuff.webp",
+      "image_url": "portals/images/minecraft/Tuff.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=Tuff.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "snow_block": {
-      "image_url": "images/minecraft/SnowBlock.webp",
+      "image_url": "portals/images/minecraft/SnowBlock.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=SnowBlock.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "podzol": {
-      "image_url": "images/minecraft/Podzol.webp",
+      "image_url": "portals/images/minecraft/Podzol.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=Podzol.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "spruce_leaves": {
-      "image_url": "images/minecraft/SpruceLeaves.webp",
+      "image_url": "portals/images/minecraft/SpruceLeaves.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=SpruceLeaves.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "powder_snow": {
-      "image_url": "images/minecraft/PowderSnow.webp",
+      "image_url": "portals/images/minecraft/PowderSnow.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=PowderSnow.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "packed_ice": {
-      "image_url": "images/minecraft/PackedIce.webp",
+      "image_url": "portals/images/minecraft/PackedIce.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=PackedIce.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "calcite": {
-      "image_url": "images/minecraft/Calcite.webp",
+      "image_url": "portals/images/minecraft/Calcite.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=Calcite.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "coal_ore": {
-      "image_url": "images/minecraft/CoalOre.webp",
+      "image_url": "portals/images/minecraft/CoalOre.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=CoalOre.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "gravel": {
-      "image_url": "images/minecraft/Gravel.webp",
+      "image_url": "portals/images/minecraft/Gravel.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=Gravel.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "stripped_acacia_log": {
-      "image_url": "images/minecraft/StrippedAcaciaLog.webp",
+      "image_url": "portals/images/minecraft/StrippedAcaciaLog.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=StrippedAcaciaLog.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "acacia_log": {
-      "image_url": "images/minecraft/AcaciaLog.webp",
+      "image_url": "portals/images/minecraft/AcaciaLog.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=AcaciaLog.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "blue_ice": {
-      "image_url": "images/minecraft/BlueIce.webp",
+      "image_url": "portals/images/minecraft/BlueIce.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=BlueIce.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "sand": {
-      "image_url": "images/minecraft/Sand.webp",
+      "image_url": "portals/images/minecraft/Sand.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=Sand.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "cut_sandstone": {
-      "image_url": "images/minecraft/CutSandstone.webp",
+      "image_url": "portals/images/minecraft/CutSandstone.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=CutSandstone.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "smooth_sandstone": {
-      "image_url": "images/minecraft/SmoothSandstone.webp",
+      "image_url": "portals/images/minecraft/SmoothSandstone.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=SmoothSandstone.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "orange_terracotta": {
-      "image_url": "images/minecraft/OrangeTerracotta.webp",
+      "image_url": "portals/images/minecraft/OrangeTerracotta.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=OrangeTerracotta.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "acacia_leaves": {
-      "image_url": "images/minecraft/AcaciaLeaves.webp",
+      "image_url": "portals/images/minecraft/AcaciaLeaves.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=AcaciaLeaves.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "acacia_planks": {
-      "image_url": "images/minecraft/AcaciaPlanks.webp",
+      "image_url": "portals/images/minecraft/AcaciaPlanks.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=AcaciaPlanks.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "coarse_dirt": {
-      "image_url": "images/minecraft/CoarseDirt.webp",
+      "image_url": "portals/images/minecraft/CoarseDirt.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=CoarseDirt.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "red_sand": {
-      "image_url": "images/minecraft/RedSand.webp",
+      "image_url": "portals/images/minecraft/RedSand.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=RedSand.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "cut_red_sandstone": {
-      "image_url": "images/minecraft/CutRedSandstone.webp",
+      "image_url": "portals/images/minecraft/CutRedSandstone.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=CutRedSandstone.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "terracotta": {
-      "image_url": "images/minecraft/Terracotta.webp",
+      "image_url": "portals/images/minecraft/Terracotta.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=Terracotta.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "dead_bush": {
-      "image_url": "images/minecraft/DeadBush.webp",
+      "image_url": "portals/images/minecraft/DeadBush.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=DeadBush.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "yellow_terracotta": {
-      "image_url": "images/minecraft/YellowTerracotta.webp",
+      "image_url": "portals/images/minecraft/YellowTerracotta.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=YellowTerracotta.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "stripped_jungle_log": {
-      "image_url": "images/minecraft/StrippedJungleLog.webp",
+      "image_url": "portals/images/minecraft/StrippedJungleLog.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=StrippedJungleLog.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "jungle_leaves": {
-      "image_url": "images/minecraft/JungleLeaves.webp",
+      "image_url": "portals/images/minecraft/JungleLeaves.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=JungleLeaves.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "jungle_planks": {
-      "image_url": "images/minecraft/JunglePlanks.webp",
+      "image_url": "portals/images/minecraft/JunglePlanks.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=JunglePlanks.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "jungle_log": {
-      "image_url": "images/minecraft/JungleLog.webp",
+      "image_url": "portals/images/minecraft/JungleLog.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=JungleLog.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "bamboo_block": {
-      "image_url": "images/minecraft/BambooBlock.webp",
+      "image_url": "portals/images/minecraft/BambooBlock.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=BambooBlock.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "bamboo_mosaic": {
-      "image_url": "images/minecraft/BambooMosaic.webp",
+      "image_url": "portals/images/minecraft/BambooMosaic.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=BambooMosaic.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "firefly_bush": {
-      "image_url": "images/minecraft/FireflyBush.webp",
+      "image_url": "portals/images/minecraft/FireflyBush.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=FireflyBush.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "green_terracotta": {
-      "image_url": "images/minecraft/GreenTerracotta.webp",
+      "image_url": "portals/images/minecraft/GreenTerracotta.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=GreenTerracotta.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "mangrove_roots": {
-      "image_url": "images/minecraft/MangroveRoots.webp",
+      "image_url": "portals/images/minecraft/MangroveRoots.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=MangroveRoots.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "mangrove_leaves": {
-      "image_url": "images/minecraft/MangroveLeaves.webp",
+      "image_url": "portals/images/minecraft/MangroveLeaves.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=MangroveLeaves.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "stripped_mangrove_log": {
-      "image_url": "images/minecraft/StrippedMangroveLog.webp",
+      "image_url": "portals/images/minecraft/StrippedMangroveLog.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=StrippedMangroveLog.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "mangrove_planks": {
-      "image_url": "images/minecraft/MangrovePlanks.webp",
+      "image_url": "portals/images/minecraft/MangrovePlanks.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=MangrovePlanks.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "mangrove_log": {
-      "image_url": "images/minecraft/MangroveLog.webp",
+      "image_url": "portals/images/minecraft/MangroveLog.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=MangroveLog.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "muddy_mangrove_roots": {
-      "image_url": "images/minecraft/MuddyMangroveRoots.webp",
+      "image_url": "portals/images/minecraft/MuddyMangroveRoots.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=MuddyMangroveRoots.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "mud": {
-      "image_url": "images/minecraft/Mud.webp",
+      "image_url": "portals/images/minecraft/Mud.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=Mud.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "clay": {
-      "image_url": "images/minecraft/Clay.webp",
+      "image_url": "portals/images/minecraft/Clay.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=Clay.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "sandstone": {
-      "image_url": "images/minecraft/Sandstone.webp",
+      "image_url": "portals/images/minecraft/Sandstone.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=Sandstone.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "sea_lantern": {
-      "image_url": "images/minecraft/SeaLantern.webp",
+      "image_url": "portals/images/minecraft/SeaLantern.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=SeaLantern.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "prismarine": {
-      "image_url": "images/minecraft/Prismarine.webp",
+      "image_url": "portals/images/minecraft/Prismarine.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=Prismarine.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "dried_kelp_block": {
-      "image_url": "images/minecraft/DriedKelpBlock.webp",
+      "image_url": "portals/images/minecraft/DriedKelpBlock.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=DriedKelpBlock.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "prismarine_bricks": {
-      "image_url": "images/minecraft/PrismarineBricks.webp",
+      "image_url": "portals/images/minecraft/PrismarineBricks.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=PrismarineBricks.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "dark_prismarine": {
-      "image_url": "images/minecraft/DarkPrismarine.webp",
+      "image_url": "portals/images/minecraft/DarkPrismarine.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=DarkPrismarine.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "mycelium": {
-      "image_url": "images/minecraft/Mycelium.webp",
+      "image_url": "portals/images/minecraft/Mycelium.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=Mycelium.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "red_mushroom_block": {
-      "image_url": "images/minecraft/RedMushroomBlock.webp",
+      "image_url": "portals/images/minecraft/RedMushroomBlock.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=RedMushroomBlock.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "brown_mushroom_block": {
-      "image_url": "images/minecraft/BrownMushroomBlock.webp",
+      "image_url": "portals/images/minecraft/BrownMushroomBlock.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=BrownMushroomBlock.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "dripstone_block": {
-      "image_url": "images/minecraft/DripstoneBlock.webp",
+      "image_url": "portals/images/minecraft/DripstoneBlock.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=DripstoneBlock.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "copper_ore": {
-      "image_url": "images/minecraft/CopperOre.webp",
+      "image_url": "portals/images/minecraft/CopperOre.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=CopperOre.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "sculk": {
-      "image_url": "images/minecraft/Sculk.webp",
+      "image_url": "portals/images/minecraft/Sculk.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=Sculk.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "deepslate_bricks": {
-      "image_url": "images/minecraft/DeepslateBricks.webp",
+      "image_url": "portals/images/minecraft/DeepslateBricks.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=DeepslateBricks.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "polished_deepslate": {
-      "image_url": "images/minecraft/PolishedDeepslate.webp",
+      "image_url": "portals/images/minecraft/PolishedDeepslate.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=PolishedDeepslate.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "sculk_catalyst": {
-      "image_url": "images/minecraft/SculkCatalyst.webp",
+      "image_url": "portals/images/minecraft/SculkCatalyst.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=SculkCatalyst.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "polished_cinnabar": {
-      "image_url": "images/minecraft/PolishedCinnabar.webp",
+      "image_url": "portals/images/minecraft/PolishedCinnabar.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=PolishedCinnabar.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "chiseled_sulfur": {
-      "image_url": "images/minecraft/ChiseledSulfur.webp",
+      "image_url": "portals/images/minecraft/ChiseledSulfur.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=ChiseledSulfur.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "chiseled_cinnabar": {
-      "image_url": "images/minecraft/ChiseledCinnabar.webp",
+      "image_url": "portals/images/minecraft/ChiseledCinnabar.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=ChiseledCinnabar.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "cinnabar": {
-      "image_url": "images/minecraft/Cinnabar.webp",
+      "image_url": "portals/images/minecraft/Cinnabar.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=Cinnabar.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "cinnabar_bricks": {
-      "image_url": "images/minecraft/CinnabarBricks.webp",
+      "image_url": "portals/images/minecraft/CinnabarBricks.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=CinnabarBricks.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "polished_sulfur": {
-      "image_url": "images/minecraft/PolishedSulfur.webp",
+      "image_url": "portals/images/minecraft/PolishedSulfur.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=PolishedSulfur.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "glowstone": {
-      "image_url": "images/minecraft/Glowstone.webp",
+      "image_url": "portals/images/minecraft/Glowstone.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=Glowstone.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "basalt": {
-      "image_url": "images/minecraft/Basalt.webp",
+      "image_url": "portals/images/minecraft/Basalt.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=Basalt.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "soul_sand": {
-      "image_url": "images/minecraft/SoulSand.webp",
+      "image_url": "portals/images/minecraft/SoulSand.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=SoulSandNew.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "nether_portal": {
-      "image_url": "images/minecraft/NetherPortal.webp",
+      "image_url": "portals/images/minecraft/NetherPortal.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=NetherPortal.gif",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "red_terracotta": {
-      "image_url": "images/minecraft/RedTerracotta.webp",
+      "image_url": "portals/images/minecraft/RedTerracotta.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=RedTerracotta.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
     },
     "blue_glazed_terracotta": {
-      "image_url": "images/minecraft/BlueGlazedTerracotta.webp",
+      "image_url": "portals/images/minecraft/BlueGlazedTerracotta.webp",
       "source_url": "https://minecraft-archive.fandom.com/wiki/Blocks/Gallery?file=BlueGlazedTerracotta.png",
       "source_name": "Minecraft Wiki / Fandom",
       "copyright": "Mojang Studios / Microsoft"
