@@ -40,6 +40,7 @@ replay_pid*
 # Temporary files
 *.tmp
 *.temp
+.LCK*~
 
 # Cache
 scripts/.cache/
