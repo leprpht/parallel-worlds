@@ -9,6 +9,7 @@ object ParallelWorlds : ModInitializer {
     private val logger = LoggerFactory.getLogger("parallelworlds")
 
     override fun onInitialize() {
+        System.setProperty("parallelworlds.version", "26.3")
         logger.info("Parallel Worlds initialized")
 
         ParallelWorldsPortals.register()

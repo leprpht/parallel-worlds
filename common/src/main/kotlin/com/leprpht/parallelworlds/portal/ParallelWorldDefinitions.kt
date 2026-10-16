@@ -68,14 +68,6 @@ object ParallelWorldDefinitions {
             portalDesign = PortalDesigns.DARK_FOREST,
         )
 
-    val DAPPLED_FOREST =
-        ParallelWorldDefinition(
-            id = "dappled_forest",
-            biome = biome("dappled_forest"),
-            dimension = dimension("dappled_forest"),
-            portalDesign = PortalDesigns.DAPPLED_FOREST,
-        )
-
     val PALE_GARDEN =
         ParallelWorldDefinition(
             id = "pale_garden",
@@ -460,6 +452,14 @@ object ParallelWorldDefinitions {
             portalDesign = PortalDesigns.SULFUR_CAVES,
         )
 
+    val DAPPLED_FOREST =
+        ParallelWorldDefinition(
+            id = "dappled_forest",
+            biome = biome("dappled_forest"),
+            dimension = dimension("dappled_forest"),
+            portalDesign = PortalDesigns.DAPPLED_FOREST,
+        )
+
     val ALL: List<ParallelWorldDefinition> =
         listOf(
             PLAINS,
@@ -469,7 +469,6 @@ object ParallelWorldDefinitions {
             BIRCH_FOREST,
             OLD_GROWTH_BIRCH_FOREST,
             DARK_FOREST,
-            DAPPLED_FOREST,
             PALE_GARDEN,
             CHERRY_GROVE,
             TAIGA,
@@ -518,6 +517,7 @@ object ParallelWorldDefinitions {
             DRIPSTONE_CAVES,
             DEEP_DARK,
             SULFUR_CAVES,
+            DAPPLED_FOREST,
         )
 
     /**
@@ -539,7 +539,7 @@ object ParallelWorldDefinitions {
     fun all(): List<ParallelWorldDefinition> = ACTIVE
 
     fun allForVersion(versionLine: String): List<ParallelWorldDefinition> {
-        val available = SupportedVersions.byId(versionLine).dimensionsAdded
+        val available = SupportedVersions.byId(versionLine).availableBiomes
         return ALL.filter { it.id in available }
     }
 

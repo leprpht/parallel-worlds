@@ -14,6 +14,7 @@ class ParallelWorldDefinitionsTest {
 
     @BeforeTest
     fun bootstrapMinecraft() {
+        System.setProperty("parallelworlds.version", "26.3")
         SharedConstants.tryDetectVersion()
         Bootstrap.bootStrap()
     }
@@ -62,6 +63,11 @@ class ParallelWorldDefinitionsTest {
                 )
                 .forEach(::assertNotNull)
         }
+    }
+
+    @Test
+    fun dappledForestIsAvailableIn26Point3() {
+        assertNotNull(ParallelWorldDefinitions.byId("dappled_forest"))
     }
 
     @Test

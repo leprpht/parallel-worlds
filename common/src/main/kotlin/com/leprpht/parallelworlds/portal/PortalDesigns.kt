@@ -1,8 +1,15 @@
 package com.leprpht.parallelworlds.portal
 
+import net.minecraft.core.registries.BuiltInRegistries
+import net.minecraft.resources.Identifier
+import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 
 object PortalDesigns {
+    private fun registered(id: String, fallback: Block): Block =
+        BuiltInRegistries.BLOCK.getOptional(Identifier.fromNamespaceAndPath("minecraft", id))
+            .orElse(fallback)
+
     val PLAINS =
         PortalDesign(
             topLeft = Blocks.POPPY,
@@ -131,20 +138,20 @@ object PortalDesigns {
 
     val DAPPLED_FOREST =
         PortalDesign(
-            topLeft = Blocks.ORANGE_POPLAR_LEAVES,
-            topInnerLeft = Blocks.RED_POPLAR_LEAVES,
-            topInnerRight = Blocks.RED_POPLAR_LEAVES,
-            topRight = Blocks.ORANGE_POPLAR_LEAVES,
-            upperLeft = Blocks.YELLOW_POPLAR_LEAVES,
-            upperRight = Blocks.YELLOW_POPLAR_LEAVES,
-            middleLeft = Blocks.STRIPPED_POPLAR_LOG,
-            middleRight = Blocks.STRIPPED_POPLAR_LOG,
-            lowerLeft = Blocks.POPLAR_PLANKS,
-            lowerRight = Blocks.POPLAR_PLANKS,
-            bottomLeft = Blocks.POPLAR_LOG,
+            topLeft = registered("orange_poplar_leaves", Blocks.OAK_LEAVES),
+            topInnerLeft = registered("red_poplar_leaves", Blocks.OAK_LEAVES),
+            topInnerRight = registered("red_poplar_leaves", Blocks.OAK_LEAVES),
+            topRight = registered("orange_poplar_leaves", Blocks.OAK_LEAVES),
+            upperLeft = registered("yellow_poplar_leaves", Blocks.OAK_LEAVES),
+            upperRight = registered("yellow_poplar_leaves", Blocks.OAK_LEAVES),
+            middleLeft = registered("stripped_poplar_log", Blocks.OAK_LOG),
+            middleRight = registered("stripped_poplar_log", Blocks.OAK_LOG),
+            lowerLeft = registered("poplar_planks", Blocks.OAK_PLANKS),
+            lowerRight = registered("poplar_planks", Blocks.OAK_PLANKS),
+            bottomLeft = registered("poplar_log", Blocks.OAK_LOG),
             bottomInnerLeft = Blocks.MOSSY_COBBLESTONE,
             bottomInnerRight = Blocks.MOSSY_COBBLESTONE,
-            bottomRight = Blocks.POPLAR_LOG,
+            bottomRight = registered("poplar_log", Blocks.OAK_LOG),
         )
 
     val PALE_GARDEN =

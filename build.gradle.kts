@@ -1,4 +1,5 @@
 import java.util.Properties
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("net.fabricmc.fabric-loom") version "1.17.21"
@@ -21,6 +22,7 @@ val selectedMinecraftVersion = versionSetting("minecraft")
 val selectedLoaderVersion = versionSetting("loader")
 val selectedFabricApiVersion = versionSetting("fabricApi")
 val selectedJavaVersion = versionSetting("java").toInt()
+val versionSourceDir = "versions/$versionLine/src"
 
 base {
     archivesName = "${project.property("archives_base_name")}-${versionLine}"
@@ -39,19 +41,19 @@ sourceSets {
         java.setSrcDirs(
             listOf(
                 "common/src/main/kotlin",
-                "versions/26.3/src/main/kotlin",
+                "$versionSourceDir/main/kotlin",
             )
         )
         resources.setSrcDirs(
             listOf(
                 "common/src/main/resources",
-                "versions/26.3/src/main/resources",
+                "$versionSourceDir/main/resources",
             )
         )
     }
     named("test") {
-        java.setSrcDirs(listOf("versions/26.3/src/test/kotlin"))
-        resources.setSrcDirs(listOf("versions/26.3/src/test/resources"))
+        java.setSrcDirs(listOf("$versionSourceDir/test/kotlin"))
+        resources.setSrcDirs(listOf("$versionSourceDir/test/resources"))
     }
 }
 
@@ -85,6 +87,20 @@ java {
 
 kotlin {
     jvmToolchain(selectedJavaVersion)
+}
+
+tasks.withType<KotlinCompile>().configureEach {
+    if (name == "compileKotlin" && versionLine == "1.16.1") {
+        // Older adapters provide their own definitions/designs where newer
+        // registry constants (for example 26.3's poplar blocks) do not exist.
+        val sharedSources = fileTree("common/src/main/kotlin") {
+            exclude("com/leprpht/parallelworlds/portal/ParallelWorldDefinition.kt")
+            exclude("com/leprpht/parallelworlds/portal/ParallelWorldDefinitions.kt")
+            exclude("com/leprpht/parallelworlds/portal/PortalDesign.kt")
+            exclude("com/leprpht/parallelworlds/portal/PortalDesigns.kt")
+        }
+        setSource(files(sharedSources, "$versionSourceDir/main/kotlin"))
+    }
 }
 
 spotless {
