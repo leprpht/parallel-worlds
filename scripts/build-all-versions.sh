@@ -10,7 +10,10 @@ VERSION_MATRIX="$ROOT_DIR/versions/version-lines.properties"
     exit 1
 }
 
-mapfile -t version_lines < <(
+version_lines=()
+while IFS= read -r version_line; do
+    version_lines+=("$version_line")
+done < <(
     sed -nE 's/^([^#][^=]*)\.minecraft=.*/\1/p' "$VERSION_MATRIX" |
         awk '!seen[$0]++'
 )
