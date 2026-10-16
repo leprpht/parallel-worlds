@@ -41,7 +41,9 @@ sourceSets {
         java.setSrcDirs(
             listOf(
                 "common/src/main/kotlin",
+                "common/src/main/java",
                 "$versionSourceDir/main/kotlin",
+                "$versionSourceDir/main/java",
             )
         )
         resources.setSrcDirs(
@@ -110,8 +112,8 @@ spotless {
     }
 
     java {
-        target("common/src/**/*.java", "versions/src/**/*.java")
-        googleJavaFormat("1.36.1")
+        target("common/src/**/*.java", "versions/**/src/**/*.java")
+        googleJavaFormat("1.36.1").aosp()
     }
 }
 
