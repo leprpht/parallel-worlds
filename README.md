@@ -24,7 +24,14 @@ Parallel Worlds is a Fabric mod for Minecraft that adds alternate world-generati
 - Fabric Language Kotlin `1.14.1+kotlin.2.4.20` or newer
 - Java 25
 
-The released mod jar is built for the versions listed above. Install Fabric Loader, Fabric API, and Fabric Language Kotlin in the same Minecraft instance before installing Parallel Worlds.
+The released mod jar is built for Minecraft `26.3`. Install Fabric Loader, Fabric API, and Fabric Language Kotlin in the same Minecraft instance before installing Parallel Worlds.
+
+Version-specific source lives under [`versions/`](versions/), with shared
+compatibility metadata under [`common/`](common/). Run `./gradlew supportedVersionLines`
+to print the maintained behavior/API boundaries from Minecraft `1.16.1` through
+`26.3`. At runtime, the portal catalog can be smoke-tested for a line with
+`-Dparallelworlds.version=1.18.2`; unavailable biome dimensions are then omitted
+from portal lookup and return travel.
 
 ## Building from source
 

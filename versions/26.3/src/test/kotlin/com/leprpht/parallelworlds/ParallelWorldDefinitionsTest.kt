@@ -1,6 +1,7 @@
 package com.leprpht.parallelworlds
 
 import com.leprpht.parallelworlds.portal.ParallelWorldDefinitions
+import com.leprpht.parallelworlds.compat.SupportedVersions
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -60,6 +61,13 @@ class ParallelWorldDefinitionsTest {
                     design.bottomRight,
                 )
                 .forEach(::assertNotNull)
+        }
+    }
+
+    @Test
+    fun everySupportedLineHasANonEmptyPortalCatalog() {
+        SupportedVersions.lines.forEach { line ->
+            assertTrue(ParallelWorldDefinitions.allForVersion(line.id).isNotEmpty(), line.id)
         }
     }
 }

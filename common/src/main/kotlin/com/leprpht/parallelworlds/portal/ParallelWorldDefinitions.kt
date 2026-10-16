@@ -1,5 +1,6 @@
 package com.leprpht.parallelworlds.portal
 
+import com.leprpht.parallelworlds.compat.SupportedVersions
 import kotlin.collections.associateBy
 import kotlin.collections.listOf
 import net.minecraft.resources.Identifier
@@ -519,13 +520,28 @@ object ParallelWorldDefinitions {
             SULFUR_CAVES,
         )
 
-    val BY_ID: Map<String, ParallelWorldDefinition> = ALL.associateBy { it.id }
+    /**
+     * The build can select an older definition set with -Dparallelworlds.version=1.18.2. Version
+     * adapters use the same filtering rule, so a portal can never target a dimension whose biome
+     * does not exist in that Minecraft release.
+     */
+    private val ACTIVE: List<ParallelWorldDefinition> =
+        allForVersion(System.getProperty("parallelworlds.version", "26.3"))
 
-    val BY_DIMENSION: Map<Identifier, ParallelWorldDefinition> = ALL.associateBy { it.dimension }
+    val BY_ID: Map<String, ParallelWorldDefinition> = ACTIVE.associateBy { it.id }
 
-    val BY_DESIGN: Map<PortalDesign, ParallelWorldDefinition> = ALL.associateBy { it.portalDesign }
+    val BY_DIMENSION: Map<Identifier, ParallelWorldDefinition> = ACTIVE.associateBy { it.dimension }
 
-    fun all(): List<ParallelWorldDefinition> = ALL
+    val BY_DESIGN: Map<PortalDesign, ParallelWorldDefinition> = ACTIVE.associateBy {
+        it.portalDesign
+    }
+
+    fun all(): List<ParallelWorldDefinition> = ACTIVE
+
+    fun allForVersion(versionLine: String): List<ParallelWorldDefinition> {
+        val available = SupportedVersions.byId(versionLine).dimensionsAdded
+        return ALL.filter { it.id in available }
+    }
 
     fun byId(id: String): ParallelWorldDefinition? = BY_ID[id]
 
