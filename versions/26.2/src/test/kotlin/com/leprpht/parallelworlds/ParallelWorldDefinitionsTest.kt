@@ -1,7 +1,7 @@
 package com.leprpht.parallelworlds
 
-import com.leprpht.parallelworlds.portal.ParallelWorldDefinitions
 import com.leprpht.parallelworlds.compat.SupportedVersions
+import com.leprpht.parallelworlds.portal.ParallelWorldDefinitions
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -74,12 +74,12 @@ class ParallelWorldDefinitionsTest {
     }
 
     @Test
-    fun usesTheBaseCatalogPlus26Point2Additions() {
+    fun usesThe26Point2CatalogSnapshot() {
         val ids = ParallelWorldDefinitions.all().map { it.id }.toSet()
 
         assertTrue("sulfur_caves" in ids)
         assertFalse("dappled_forest" in ids)
-        assertTrue(SupportedVersions.baseBiomes().all { it in ids })
+        assertTrue(SupportedVersions.byId("26.2").availableBiomes.all { it in ids })
     }
 
     @Test

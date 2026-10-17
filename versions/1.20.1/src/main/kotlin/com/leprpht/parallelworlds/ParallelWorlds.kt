@@ -1,0 +1,21 @@
+package com.leprpht.parallelworlds
+
+import net.fabricmc.api.ModInitializer
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback
+import org.slf4j.LoggerFactory
+
+object ParallelWorlds : ModInitializer {
+
+    private val logger = LoggerFactory.getLogger("parallelworlds")
+
+    override fun onInitialize() {
+        System.setProperty("parallelworlds.version", "1.20.1")
+        logger.info("Parallel Worlds initialized")
+
+        ParallelWorldsPortals.register()
+
+        CommandRegistrationCallback.EVENT.register { dispatcher, _, _ ->
+            ParallelWorldsCommands.register(dispatcher)
+        }
+    }
+}

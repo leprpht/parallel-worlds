@@ -1,7 +1,7 @@
 package com.leprpht.parallelworlds
 
-import com.leprpht.parallelworlds.portal.ParallelWorldDefinitions
 import com.leprpht.parallelworlds.compat.SupportedVersions
+import com.leprpht.parallelworlds.portal.ParallelWorldDefinitions
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals

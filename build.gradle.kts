@@ -1,8 +1,10 @@
 import java.util.Properties
+import net.fabricmc.loom.api.LoomGradleExtensionAPI
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("net.fabricmc.fabric-loom") version "1.17.21"
+    id("net.fabricmc.fabric-loom") version "1.17.21" apply false
+    id("net.fabricmc.fabric-loom-remap") version "1.17.21" apply false
     kotlin("jvm") version "2.4.20"
     id("com.diffplug.spotless") version "8.10.3"
 }
@@ -11,6 +13,8 @@ group = project.property("maven_group") as String
 version = project.property("mod_version") as String
 
 val versionLine = providers.gradleProperty("versionLine").orElse("26.3").get()
+apply(plugin = if (versionLine.startsWith("26.")) "net.fabricmc.fabric-loom" else "net.fabricmc.fabric-loom-remap")
+val loomExtension = extensions.getByType<LoomGradleExtensionAPI>()
 val versionMatrix = Properties().apply {
     file("versions/version-lines.properties").inputStream().use(::load)
 }
@@ -21,8 +25,12 @@ fun versionSetting(name: String): String =
 val selectedMinecraftVersion = versionSetting("minecraft")
 val selectedLoaderVersion = versionSetting("loader")
 val selectedFabricApiVersion = versionSetting("fabricApi")
+val selectedLanguageKotlinVersion = versionSetting("languageKotlin")
 val selectedJavaVersion = versionSetting("java").toInt()
+val buildJavaVersion = if (selectedJavaVersion < 21) 21 else selectedJavaVersion
 val versionSourceDir = "versions/$versionLine/src"
+val modDependencyConfiguration =
+    if (versionLine.startsWith("26.")) "implementation" else "modImplementation"
 
 base {
     archivesName = "${project.property("archives_base_name")}-${versionLine}"
@@ -62,20 +70,24 @@ sourceSets {
 dependencies {
     implementation(kotlin("stdlib"))
 
-    minecraft(
+    add("minecraft",
         "com.mojang:minecraft:$selectedMinecraftVersion"
     )
 
-    implementation(
+    if (!versionLine.startsWith("26.")) {
+        add("mappings", loomExtension.officialMojangMappings())
+    }
+
+    add(modDependencyConfiguration,
         "net.fabricmc:fabric-loader:$selectedLoaderVersion"
     )
 
-    implementation(
+    add(modDependencyConfiguration,
         "net.fabricmc.fabric-api:fabric-api:$selectedFabricApiVersion"
     )
 
-    implementation(
-        "net.fabricmc:fabric-language-kotlin:${project.property("fabric_language_kotlin_version")}"
+    add(modDependencyConfiguration,
+        "net.fabricmc:fabric-language-kotlin:$selectedLanguageKotlinVersion"
     )
 
     testImplementation(kotlin("test"))
@@ -83,31 +95,32 @@ dependencies {
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(selectedJavaVersion))
+        // Gradle/Loom can build old bytecode with a modern JDK. The selected
+        // value remains the Minecraft runtime requirement; this only avoids
+        // requiring every historical JDK on the developer machine.
+        languageVersion.set(JavaLanguageVersion.of(buildJavaVersion))
     }
 }
 
 kotlin {
-    jvmToolchain(selectedJavaVersion)
+    jvmToolchain(buildJavaVersion)
+}
+
+tasks.withType<JavaCompile>().configureEach {
+    options.release.set(selectedJavaVersion)
 }
 
 tasks.withType<KotlinCompile>().configureEach {
-    if (name == "compileKotlin" && versionLine == "1.16.1") {
-        // Older adapters provide their own definitions/designs where newer
-        // registry constants (for example 26.3's poplar blocks) do not exist.
-        val sharedSources = fileTree("common/src/main/kotlin") {
-            exclude("com/leprpht/parallelworlds/portal/ParallelWorldDefinition.kt")
-            exclude("com/leprpht/parallelworlds/portal/ParallelWorldDefinitions.kt")
-            exclude("com/leprpht/parallelworlds/portal/PortalDesign.kt")
-            exclude("com/leprpht/parallelworlds/portal/PortalDesigns.kt")
-        }
-        setSource(files(sharedSources, "$versionSourceDir/main/kotlin"))
-    }
+    compilerOptions.jvmTarget.set(
+        org.jetbrains.kotlin.gradle.dsl.JvmTarget.fromTarget(
+            if (selectedJavaVersion == 8) "1.8" else selectedJavaVersion.toString()
+        )
+    )
 }
 
 spotless {
     kotlin {
-        target("common/src/**/*.kt", "versions/src/**/*.kt")
+        target("common/src/**/*.kt", "versions/**/src/**/*.kt")
         ktfmt("0.64").kotlinlangStyle()
     }
 
@@ -143,6 +156,29 @@ tasks.processResources {
         "sulfur_caves" to listOf(26, 2),
         "dappled_forest" to listOf(26, 3),
     )
+    val renamedIn = mapOf(
+        "snowy_tundra" to listOf(1, 18),
+        "stone_shore" to listOf(1, 18),
+        "wooded_badlands_plateau" to listOf(1, 18),
+        "mountains" to listOf(1, 18),
+        "gravelly_mountains" to listOf(1, 18),
+        "wooded_mountains" to listOf(1, 18),
+        "tall_birch_forest" to listOf(1, 18),
+        "giant_tree_taiga" to listOf(1, 18),
+        "giant_spruce_taiga" to listOf(1, 18),
+        "shattered_savanna" to listOf(1, 18),
+        "shattered_savanna_plateau" to listOf(1, 18),
+        "deep_warm_ocean" to listOf(1, 18),
+        "snowy_plains" to listOf(1, 18),
+        "stony_shore" to listOf(1, 18),
+        "wooded_badlands" to listOf(1, 18),
+        "windswept_hills" to listOf(1, 18),
+        "windswept_gravelly_hills" to listOf(1, 18),
+        "windswept_forest" to listOf(1, 18),
+        "old_growth_birch_forest" to listOf(1, 18),
+        "old_growth_spruce_taiga" to listOf(1, 18),
+        "old_growth_pine_taiga" to listOf(1, 18),
+    )
 
     fun versionAtLeast(left: List<Int>, right: List<Int>): Boolean =
         (left + List(3 - left.size) { 0 }).zip(right + List(3 - right.size) { 0 })
@@ -152,6 +188,15 @@ tasks.processResources {
 
     exclude { details ->
         val fileName = details.path.substringAfterLast('/').removeSuffix(".json")
+        val renamed = renamedIn[fileName]
+        if (renamed != null) {
+            val isNewName = fileName !in BiomeCatalogLegacyNames
+            return@exclude if (isNewName) {
+                !versionAtLeast(targetKey, renamed)
+            } else {
+                versionAtLeast(targetKey, renamed)
+            }
+        }
         val introduced = introducedIn[fileName] ?: return@exclude false
         !versionAtLeast(targetKey, introduced)
     }
@@ -160,17 +205,31 @@ tasks.processResources {
         "version" to project.version,
         "minecraft_version" to selectedMinecraftVersion,
         "loader_version" to selectedLoaderVersion,
-        "fabric_language_kotlin_version" to project.property(
-            "fabric_language_kotlin_version"
-        )
+        "fabric_language_kotlin_version" to selectedLanguageKotlinVersion
     )
 
     inputs.properties(props)
+    inputs.property("versionLine", versionLine)
 
     filesMatching("fabric.mod.json") {
         expand(props)
     }
 }
+
+private val BiomeCatalogLegacyNames = setOf(
+    "snowy_tundra",
+    "stone_shore",
+    "wooded_badlands_plateau",
+    "mountains",
+    "gravelly_mountains",
+    "wooded_mountains",
+    "tall_birch_forest",
+    "giant_tree_taiga",
+    "giant_spruce_taiga",
+    "shattered_savanna",
+    "shattered_savanna_plateau",
+    "deep_warm_ocean",
+)
 
 tasks.jar {
     from("LICENSE") {

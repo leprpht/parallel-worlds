@@ -19,12 +19,16 @@ Parallel Worlds is a Fabric mod for Minecraft that adds alternate world-generati
 
 ## Requirements
 
-- Minecraft `26.3`
-- Fabric Loader `0.19.5` or newer
-- Fabric Language Kotlin `1.14.1+kotlin.2.4.20` or newer
-- Java 25
+The repository builds separate jars for each maintained line: `1.16.1`,
+`1.16.2`, `1.17.1`, `1.18.2`, `1.19.4`, `1.20.1`, `1.20.6`, `1.21.1`,
+`1.21.4`, `26.1.2`, `26.2`, and `26.3`. Each jar declares its matching Fabric
+Loader, Fabric API, and Fabric Language Kotlin versions in
+[`versions/version-lines.properties`](versions/version-lines.properties).
 
-The released mod jar is built for Minecraft `26.3`. Install Fabric Loader, Fabric API, and Fabric Language Kotlin in the same Minecraft instance before installing Parallel Worlds.
+Minecraft runtime requirements are Java 8 for 1.16.x, Java 16 for 1.17.1,
+Java 17 for 1.18.2–1.20.1, Java 21 for 1.20.6–1.21.4, and Java 25 for 26.x.
+The Gradle build uses a modern JDK with `--release` for older bytecode where
+available; the runtime requirement does not change.
 
 Version-specific source lives under [`versions/`](versions/), with shared
 compatibility metadata under [`common/`](common/). Run `./gradlew supportedVersionLines`
@@ -38,8 +42,11 @@ from portal lookup and return travel.
 Use the included setup script to configure Java and the repository hooks, or run the Gradle wrapper directly:
 
 ```bash
-./gradlew build
+./gradlew build -PversionLine=1.18.2
 ```
+
+Omitting `-PversionLine` builds the default `26.3` line. The artifact is
+written to `build/libs/` with the version line in its filename.
 
 The release artifacts are written to `build/libs/`.
 

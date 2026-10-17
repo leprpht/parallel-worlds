@@ -15,26 +15,29 @@ object BiomeCatalog {
             "dark_forest",
             "taiga",
             "snowy_taiga",
+            "giant_tree_taiga",
+            "giant_spruce_taiga",
+            "tall_birch_forest",
             "ice_spikes",
-            "snowy_plains",
+            "snowy_tundra",
             "desert",
             "savanna",
             "savanna_plateau",
             "badlands",
-            "wooded_badlands",
+            "wooded_badlands_plateau",
             "eroded_badlands",
             "jungle",
-            "sparse_jungle",
             "bamboo_jungle",
             "swamp",
             "river",
             "frozen_river",
             "beach",
             "snowy_beach",
-            "stony_shore",
+            "stone_shore",
             "ocean",
             "warm_ocean",
             "lukewarm_ocean",
+            "deep_warm_ocean",
             "deep_ocean",
             "deep_lukewarm_ocean",
             "cold_ocean",
@@ -42,6 +45,11 @@ object BiomeCatalog {
             "frozen_ocean",
             "deep_frozen_ocean",
             "mushroom_fields",
+            "mountains",
+            "gravelly_mountains",
+            "wooded_mountains",
+            "shattered_savanna",
+            "shattered_savanna_plateau",
         )
 
     private val ADDITIONS =
@@ -62,6 +70,8 @@ object BiomeCatalog {
                     "old_growth_birch_forest",
                     "old_growth_spruce_taiga",
                     "old_growth_pine_taiga",
+                    "snowy_plains",
+                    "sparse_jungle",
                 ),
             MinecraftVersion(1, 19) to setOf("mangrove_swamp", "deep_dark"),
             MinecraftVersion(1, 20) to setOf("cherry_grove"),
@@ -71,6 +81,29 @@ object BiomeCatalog {
         )
 
     fun availableAt(version: MinecraftVersion): Set<String> =
-        BASE_1_16_1 +
-            ADDITIONS.filter { (introduced, _) -> introduced <= version }.flatMap { it.second }
+        (BASE_1_16_1 +
+                ADDITIONS.filter { (introduced, _) -> introduced <= version }.flatMap { it.second })
+            .let { available ->
+                if (version >= MinecraftVersion(1, 18)) {
+                    available - RENAMED_IN_1_18
+                } else {
+                    available
+                }
+            }
+
+    private val RENAMED_IN_1_18 =
+        setOf(
+            "snowy_tundra",
+            "stone_shore",
+            "wooded_badlands_plateau",
+            "mountains",
+            "gravelly_mountains",
+            "wooded_mountains",
+            "tall_birch_forest",
+            "giant_tree_taiga",
+            "giant_spruce_taiga",
+            "shattered_savanna",
+            "shattered_savanna_plateau",
+            "deep_warm_ocean",
+        )
 }
