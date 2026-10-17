@@ -19,7 +19,7 @@ Parallel Worlds is a Fabric mod for Minecraft that adds alternate world-generati
 
 ## Requirements
 
-- Minecraft `26.3`
+- Minecraft `26.2` or `26.3`
 - Fabric Loader `0.19.5` or newer
 - Fabric Language Kotlin `1.14.1+kotlin.2.4.20` or newer
 - Java 25
