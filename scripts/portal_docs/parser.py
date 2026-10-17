@@ -15,6 +15,17 @@ def load_portal_designs_source(source_file: Path) -> str:
 def block_id_from_kotlin_expression(expression: str) -> str:
     expression = expression.strip()
 
+    # The first argument is the documentation-facing resource id. The
+    # fallback block is runtime-only and may contain a comma itself.
+    match = re.fullmatch(
+        r'(?:block|registered)\(\s*"([a-z0-9_.:/-]+)"(?:\s*,.*)?\)',
+        expression,
+        flags=re.DOTALL,
+    )
+
+    if match:
+        return match.group(1)
+
     if expression in BLOCK_EXPRESSION_MAP:
         return BLOCK_EXPRESSION_MAP[expression]
 
@@ -34,14 +45,42 @@ def parse_positions(body: str) -> dict[int, str]:
     positions = {position: "nether_portal" for position in PORTAL_INTERIOR_POSITIONS}
 
     for position, property_name in FRAME_POSITION_TO_PROPERTY.items():
-        pattern = rf"\b{re.escape(property_name)}" rf"\s*=\s*([^,\n]+)"
+        assignment = re.search(rf"\b{re.escape(property_name)}\s*=\s*", body)
 
-        match = re.search(pattern, body)
-
-        if not match:
+        if not assignment:
             raise ValueError(f"Missing portal position '{property_name}'")
 
-        positions[position] = block_id_from_kotlin_expression(match.group(1))
+        start = assignment.end()
+        end = start
+        depth = 0
+        quote = None
+        escaped = False
+
+        while end < len(body):
+            character = body[end]
+
+            if quote:
+                if escaped:
+                    escaped = False
+                elif character == "\\":
+                    escaped = True
+                elif character == quote:
+                    quote = None
+            elif character in ('"', "'"):
+                quote = character
+            elif character == "(":
+                depth += 1
+            elif character == ")":
+                if depth == 0:
+                    break
+                depth -= 1
+            elif depth == 0 and character in ",\n":
+                break
+
+            end += 1
+
+        expression = body[start:end].strip()
+        positions[position] = block_id_from_kotlin_expression(expression)
 
     return positions
 
