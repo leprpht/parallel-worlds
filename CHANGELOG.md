@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Nothing yet.
 
+## [2.0.2] - 2026-10-18
+
+### Fixed
+
+- Fixed the optional debug-chat diagnostics so they compile across all supported Minecraft versions.
+
 ## [2.0.1] - 2026-10-18
 
 ### Added
