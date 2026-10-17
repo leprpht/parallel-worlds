@@ -19,6 +19,8 @@ Parallel Worlds is a Fabric mod for Minecraft that adds alternate world-generati
 
 ## Requirements
 
+Development setup requires Python 3.9 or newer. Python is not installed automatically by the setup script.
+
 The repository builds separate jars for each maintained line: `1.16.1`,
 `1.16.2`, `1.17.1`, `1.18.2`, `1.19.4`, `1.20.1`, `1.20.6`, `1.21.1`,
 `1.21.4`, `26.1.2`, `26.2`, and `26.3`. Each jar declares its matching Fabric
@@ -39,9 +41,10 @@ from portal lookup and return travel.
 
 ## Building from source
 
-Use the included setup script to configure Java and the repository hooks, or run the Gradle wrapper directly:
+Use the included Python setup script to configure Java and the repository hooks, or run the Gradle wrapper directly:
 
 ```bash
+python3 setup.py
 ./gradlew build -PversionLine=1.18.2
 ```
 
@@ -56,4 +59,4 @@ Releases are created automatically when a SemVer tag such as `v1.0.0` is pushed.
 
 ## Development hooks
 
-The setup scripts configure `.githooks` as the repository hook directory. The `pre-push` hook checks release tags, the changelog format, and the Gradle version before allowing a tag push.
+The setup script configures `.githooks` as the repository hook directory. The `pre-push` hook checks release tags, the changelog format, and the Gradle version before allowing a tag push.
