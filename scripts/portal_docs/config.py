@@ -6,6 +6,7 @@ PROJECT_ROOT = SCRIPTS_DIR.parent
 
 SOURCE_FILE = (
     PROJECT_ROOT
+    / "common"
     / "src"
     / "main"
     / "kotlin"

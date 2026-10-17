@@ -32,8 +32,8 @@ jobs:
           version="${GITHUB_REF_NAME#v}"
           ./scripts/validate-release.sh "$version"
 
-      - name: Build artifacts
-        run: ./gradlew build
+      - name: Build artifacts for every supported Minecraft version
+        run: ./scripts/build-all-versions.sh
 
       - name: Prepare release notes
         run: ./scripts/extract-release-notes.sh "${GITHUB_REF_NAME#v}" > release-notes.md
