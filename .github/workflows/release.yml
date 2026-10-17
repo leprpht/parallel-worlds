@@ -42,7 +42,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "$GITHUB_REF_NAME" build/libs/*.jar \
+          version="${GITHUB_REF_NAME#v}"
+          gh release create "$GITHUB_REF_NAME" build/libs/*-"$version".jar \
             --verify-tag \
             --title "$GITHUB_REF_NAME" \
             --notes-file release-notes.md

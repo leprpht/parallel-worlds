@@ -25,6 +25,9 @@ done < <(
 
 cd "$ROOT_DIR"
 
+# Do not let artifacts from an earlier release get mixed into this release.
+rm -f build/libs/parallelworlds-*.jar
+
 for version_line in "${version_lines[@]}"; do
     echo "Building Minecraft $version_line..."
     ./gradlew build "-PversionLine=$version_line"
