@@ -11,6 +11,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Nothing yet.
 
+## [2.0.1] - 2026-10-18
+
+### Added
+
+- Added the Python development setup script and documented Python as a prerequisite.
+- Added optional in-game portal diagnostics with `-Dparallelworlds.debugChat=true`.
+
+### Fixed
+
+- Fixed documentation generation for resource-registered portal blocks.
+- Fixed release artifact selection so stale jars are not included in releases.
+- Updated the 1.20.1 Fabric Loader compatibility metadata.
+
 ## [2.0.0] - 2026-10-05
 
 ### Added

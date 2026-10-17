@@ -1,5 +1,6 @@
 package com.leprpht.parallelworlds
 
+import com.leprpht.parallelworlds.debug.DebugChat
 import com.leprpht.parallelworlds.portal.ParallelWorldDefinition
 import com.leprpht.parallelworlds.portal.ParallelWorldDefinitions
 import com.leprpht.parallelworlds.portal.PortalDesign
@@ -82,6 +83,7 @@ object ParallelWorldsPortals {
         world: ServerLevel,
         portalPos: BlockPos,
     ): PortalDestination? {
+        DebugChat.send(world, "Looking up custom destination at $portalPos")
         logger.info(
             "Custom portal lookup: dimension={}, position={}",
             world.dimension().location(),
@@ -91,6 +93,7 @@ object ParallelWorldsPortals {
         val portalState = world.getBlockState(portalPos)
 
         if (!portalState.`is`(Blocks.NETHER_PORTAL)) {
+            DebugChat.send(world, "Lookup failed: block is not a Nether portal")
             logger.warn(
                 "Custom portal lookup failed: block at {} is {}",
                 portalPos,
@@ -115,6 +118,7 @@ object ParallelWorldsPortals {
             )
 
         if (sourceFrame == null) {
+            DebugChat.send(world, "Lookup failed: no matching portal frame")
             logger.warn(
                 "Custom portal lookup failed: could not find frame around portal at {}",
                 portalPos,
@@ -135,6 +139,7 @@ object ParallelWorldsPortals {
         val definition = ParallelWorldDefinitions.byDesign(sourceDesign)
 
         if (definition == null) {
+            DebugChat.send(world, "Lookup failed: frame design is not registered")
             logger.warn("Custom portal lookup failed: frame design is not registered")
             return null
         }
@@ -152,6 +157,7 @@ object ParallelWorldsPortals {
             )
 
         if (destinationWorld == null) {
+            DebugChat.send(world, "Lookup failed: destination dimension is not loaded")
             logger.warn(
                 "Custom portal lookup failed: destination dimension {} is not loaded",
                 definition.dimension,
@@ -182,6 +188,7 @@ object ParallelWorldsPortals {
                 )
 
         if (destinationFrame == null) {
+            DebugChat.send(world, "Lookup failed: destination frame could not be created")
             logger.warn("Custom portal lookup failed: could not find/create destination frame")
             return null
         }

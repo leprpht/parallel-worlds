@@ -93,7 +93,7 @@ object SupportedVersions {
                 "1.20.1",
                 MinecraftVersion(1, 20, 1),
                 "0.92.2+1.20.1",
-                "0.14.22",
+                "0.15.11",
                 17,
                 BiomeCatalog.availableAt(MinecraftVersion(1, 20, 1)),
             ),
