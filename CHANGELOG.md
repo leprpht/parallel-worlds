@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Nothing yet.
 
+## [2.0.0] - 2026-10-05
+
+### Added
+
+- Support of legacy versions of Minecraft.
+- Separate build strategies for different Minecraft versions.
+- Mod versions for Minecraft 1.16.1 - 26.3
+
 ## [1.1.0] - 2026-10-05
 
 ### Fixed
