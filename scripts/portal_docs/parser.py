@@ -15,10 +15,11 @@ def load_portal_designs_source(source_file: Path) -> str:
 def block_id_from_kotlin_expression(expression: str) -> str:
     expression = expression.strip()
 
-    # The first argument is the documentation-facing resource id. The
-    # fallback block is runtime-only and may contain a comma itself.
+    # PortalDesigns.kt uses the explicit resource id as the source of truth:
+    # block("poppy", Blocks.AIR).  Keep the fallback argument opaque; it is
+    # only needed by Minecraft at runtime, not by the documentation renderer.
     match = re.fullmatch(
-        r'(?:block|registered)\(\s*"([a-z0-9_.:/-]+)"(?:\s*,.*)?\)',
+        r'block\(\s*"([a-z0-9_.:/-]+)"(?:\s*,.*)?\)',
         expression,
         flags=re.DOTALL,
     )
@@ -51,11 +52,13 @@ def parse_positions(body: str) -> dict[int, str]:
             raise ValueError(f"Missing portal position '{property_name}'")
 
         start = assignment.end()
-        end = start
         depth = 0
         quote = None
         escaped = False
+        end = start
 
+        # Stop at the next top-level argument separator. This deliberately
+        # permits commas inside block("id", fallback) expressions.
         while end < len(body):
             character = body[end]
 

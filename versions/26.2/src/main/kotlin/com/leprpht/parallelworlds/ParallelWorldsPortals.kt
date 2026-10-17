@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.event.player.UseBlockCallback
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.core.registries.Registries
+import net.minecraft.resources.Identifier
 import net.minecraft.resources.ResourceKey
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.InteractionHand
@@ -24,6 +25,12 @@ object ParallelWorldsPortals {
     private val logger = LoggerFactory.getLogger("parallelworlds")
 
     private val OVERWORLD_DIMENSION: ResourceKey<Level> = Level.OVERWORLD
+
+    private fun dimensionId(value: String) =
+        Identifier.fromNamespaceAndPath(
+            value.substringBefore(':'),
+            value.substringAfter(':'),
+        )
 
     fun register() {
         UseBlockCallback.EVENT.register { player, world, hand, hitResult ->
@@ -200,7 +207,8 @@ object ParallelWorldsPortals {
         }
 
         val currentDefinition =
-            ParallelWorldDefinitions.byDimension(world.dimension().identifier()) ?: return null
+            ParallelWorldDefinitions.byDimension(world.dimension().identifier().toString())
+                ?: return null
 
         return currentDefinition.takeIf { it.portalDesign == design }
     }
@@ -215,7 +223,7 @@ object ParallelWorldsPortals {
             val dimensionKey =
                 ResourceKey.create(
                     Registries.DIMENSION,
-                    definition.dimension,
+                    dimensionId(definition.dimension),
                 )
 
             logger.info(
@@ -226,7 +234,8 @@ object ParallelWorldsPortals {
             return world.server.getLevel(dimensionKey)
         }
 
-        val currentDefinition = ParallelWorldDefinitions.byDimension(world.dimension().identifier())
+        val currentDefinition =
+            ParallelWorldDefinitions.byDimension(world.dimension().identifier().toString())
 
         if (currentDefinition != null) {
             return world.server.overworld()

@@ -3,14 +3,12 @@ package com.leprpht.parallelworlds.portal
 import com.leprpht.parallelworlds.compat.SupportedVersions
 import kotlin.collections.associateBy
 import kotlin.collections.listOf
-import net.minecraft.resources.Identifier
 
 object ParallelWorldDefinitions {
 
-    private fun biome(id: String): Identifier = Identifier.fromNamespaceAndPath("minecraft", id)
+    private fun biome(id: String): String = "minecraft:$id"
 
-    private fun dimension(id: String): Identifier =
-        Identifier.fromNamespaceAndPath("parallelworlds", id)
+    private fun dimension(id: String): String = "parallelworlds:$id"
 
     val PLAINS =
         ParallelWorldDefinition(
@@ -460,6 +458,30 @@ object ParallelWorldDefinitions {
             portalDesign = PortalDesigns.DAPPLED_FOREST,
         )
 
+    private fun legacyAlias(id: String, design: PortalDesign) =
+        ParallelWorldDefinition(
+            id = id,
+            biome = biome(id),
+            dimension = dimension(id),
+            portalDesign = design,
+        )
+
+    private val LEGACY_1_16: List<ParallelWorldDefinition> =
+        listOf(
+            legacyAlias("snowy_tundra", PortalDesigns.SNOWY_PLAINS),
+            legacyAlias("stone_shore", PortalDesigns.STONY_SHORE),
+            legacyAlias("wooded_badlands_plateau", PortalDesigns.WOODED_BADLANDS),
+            legacyAlias("mountains", PortalDesigns.WINDSWEPT_HILLS),
+            legacyAlias("gravelly_mountains", PortalDesigns.WINDSWEPT_GRAVELLY_HILLS),
+            legacyAlias("wooded_mountains", PortalDesigns.WINDSWEPT_FOREST),
+            legacyAlias("tall_birch_forest", PortalDesigns.OLD_GROWTH_BIRCH_FOREST),
+            legacyAlias("giant_tree_taiga", PortalDesigns.OLD_GROWTH_PINE_TAIGA),
+            legacyAlias("giant_spruce_taiga", PortalDesigns.OLD_GROWTH_SPRUCE_TAIGA),
+            legacyAlias("shattered_savanna", PortalDesigns.WINDSWEPT_SAVANNA),
+            legacyAlias("shattered_savanna_plateau", PortalDesigns.WINDSWEPT_SAVANNA),
+            legacyAlias("deep_warm_ocean", PortalDesigns.DEEP_OCEAN),
+        )
+
     val ALL: List<ParallelWorldDefinition> =
         listOf(
             PLAINS,
@@ -518,7 +540,7 @@ object ParallelWorldDefinitions {
             DEEP_DARK,
             SULFUR_CAVES,
             DAPPLED_FOREST,
-        )
+        ) + LEGACY_1_16
 
     /**
      * The build can select an older definition set with -Dparallelworlds.version=1.18.2. Version
@@ -530,7 +552,7 @@ object ParallelWorldDefinitions {
 
     val BY_ID: Map<String, ParallelWorldDefinition> = ACTIVE.associateBy { it.id }
 
-    val BY_DIMENSION: Map<Identifier, ParallelWorldDefinition> = ACTIVE.associateBy { it.dimension }
+    val BY_DIMENSION: Map<String, ParallelWorldDefinition> = ACTIVE.associateBy { it.dimension }
 
     val BY_DESIGN: Map<PortalDesign, ParallelWorldDefinition> = ACTIVE.associateBy {
         it.portalDesign
@@ -545,7 +567,7 @@ object ParallelWorldDefinitions {
 
     fun byId(id: String): ParallelWorldDefinition? = BY_ID[id]
 
-    fun byDimension(dimension: Identifier): ParallelWorldDefinition? = BY_DIMENSION[dimension]
+    fun byDimension(dimension: String): ParallelWorldDefinition? = BY_DIMENSION[dimension]
 
     fun byDesign(design: PortalDesign): ParallelWorldDefinition? = BY_DESIGN[design]
 }
